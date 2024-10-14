@@ -53,6 +53,9 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Disable swapfiles (they're more annoying than useful)
+vim.opt.swapfile = false
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
