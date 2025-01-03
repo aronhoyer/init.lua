@@ -8,11 +8,11 @@ return { -- LSP Configuration & Plugins
 
     -- Useful status updates for LSP.
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',       opts = {} },
 
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
-    { 'folke/neodev.nvim', opts = {} },
+    { 'folke/neodev.nvim',       opts = {} },
   },
   config = function()
     -- Brief aside: **What is LSP?**
@@ -110,8 +110,7 @@ return { -- LSP Configuration & Plugins
         },
       },
       rust_analyzer = {},
-      tsserver = {},
-      denols = {},
+      ts_ls = {},
       lua_ls = {
         settings = {
           Lua = {
@@ -126,10 +125,7 @@ return { -- LSP Configuration & Plugins
     require('mason').setup()
 
     local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, {
-      'stylua',
-      'prettier',
-    })
+    vim.list_extend(ensure_installed, { 'stylua' })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
     require('mason-lspconfig').setup {
@@ -142,13 +138,13 @@ return { -- LSP Configuration & Plugins
       },
     }
 
-    require('lspconfig').denols.setup {
-      root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc'),
-    }
-
-    require('lspconfig').tsserver.setup {
-      root_dir = require('lspconfig').util.root_pattern('package.json', 'tsconfig.json'),
-      single_file_support = false,
-    }
+    -- require('lspconfig').denols.setup {
+    --   root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc'),
+    -- }
+    --
+    -- require('lspconfig').tsserver.setup {
+    --   root_dir = require('lspconfig').util.root_pattern('package.json', 'tsconfig.json'),
+    --   single_file_support = false,
+    -- }
   end,
 }
